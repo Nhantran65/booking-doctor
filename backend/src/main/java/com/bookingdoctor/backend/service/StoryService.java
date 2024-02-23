@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class StoryService {
 
-    private StoryRepository storyRepository;
+    private final StoryRepository storyRepository;
     private final UserRepository userRepository;
 
     @Autowired
