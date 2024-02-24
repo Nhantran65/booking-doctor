@@ -41,16 +41,16 @@ VALUES
 -- Inserting into Appointments table
 INSERT INTO appointments (doctor_id, patient_id, clinic_id, status_id, appointment_date, note)
 VALUES
-(2, 1, 1, 1, '2024-02-25 10:00:00', 'Note for appointment 1'),
-(4, 3, 3, 2, '2024-03-01 14:30:00', 'Note for appointment 2'),
-(6, 5, 5, 3, '2024-03-05 09:15:00', 'Note for appointment 3'),
-(8, 7, 7, 4, '2024-03-10 11:45:00', 'Note for appointment 4'),
-(10, 9, 9, 5, '2024-03-15 13:00:00', 'Note for appointment 5'),
-(2, 7, 2, 6, '2024-03-20 16:20:00', 'Note for appointment 6'),
-(4, 5, 4, 7, '2024-03-25 08:30:00', 'Note for appointment 7'),
-(6, 3, 6, 8, '2024-03-30 12:00:00', 'Note for appointment 8'),
-(8, 1, 8, 9, '2024-04-05 15:45:00', 'Note for appointment 9'),
-(10, 7, 10, 10, '2024-04-10 17:10:00', 'Note for appointment 10');
+(2, 1, 1, 2, '2024-02-25 10:00:00', 'Note for appointment 1'),
+(4, 3, 3,3, '2024-03-01 14:30:00', 'Note for appointment 2'),
+(6, 5, 5,4,  '2024-03-05 09:15:00', 'Note for appointment 3'),
+(8, 7, 7,1,  '2024-03-10 11:45:00', 'Note for appointment 4'),
+(10, 9, 9,4,  '2024-03-15 13:00:00', 'Note for appointment 5'),
+(2, 7, 2, 5,  '2024-03-20 16:20:00', 'Note for appointment 6'),
+(4, 5, 4, 6, '2024-03-25 08:30:00', 'Note for appointment 7'),
+(6, 3, 6, 1,  '2024-03-30 12:00:00', 'Note for appointment 8'),
+(8, 1, 8, 2,  '2024-04-05 15:45:00', 'Note for appointment 9'),
+(10, 7, 10, 4,  '2024-04-10 17:10:00', 'Note for appointment 10');
 
 -- Inserting into Stories table
 INSERT INTO stories (user_id, title, content, image_url, created_at)
