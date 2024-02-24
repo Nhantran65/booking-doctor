@@ -60,6 +60,32 @@ CREATE TABLE IF NOT EXISTS appointments (
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DELIMITER //
+
+CREATE TRIGGER before_insert_update_appointments
+BEFORE INSERT ON appointments
+FOR EACH ROW
+BEGIN
+    DECLARE doctor_role VARCHAR(255);
+    DECLARE patient_role VARCHAR(255);
+
+    -- Kiểm tra doctor_id
+    SELECT role INTO doctor_role FROM users WHERE id = NEW.doctor_id;
+    IF doctor_role != 'doctor' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot insert appointment for non-doctor user';
+    END IF;
+
+    -- Kiểm tra patient_id
+    SELECT role INTO patient_role FROM users WHERE id = NEW.patient_id;
+    IF patient_role != 'patient' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot insert appointment for non-patient user';
+    END IF;
+END;
+//
+
+DELIMITER ;
+
+
 -- Bảng Stories: Lưu các câu chuyện của người dùng về trải nghiệm khám bệnh
 CREATE TABLE IF NOT EXISTS stories (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -104,6 +130,24 @@ CREATE TABLE IF NOT EXISTS specializations (
   description TEXT,
   
   FOREIGN KEY (doctor_id) 
-  REFERENCES users(id)
-  ON UPDATE CASCADE ON DELETE CASCADE
+    REFERENCES users(id)
+    ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_update_specializations
+BEFORE INSERT ON specializations
+FOR EACH ROW
+BEGIN
+    DECLARE user_role VARCHAR(255);
+
+    SELECT role INTO user_role FROM users WHERE id = NEW.doctor_id;
+
+    IF user_role != 'doctor' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot insert specialization for non-doctor user';
+    END IF;
+END;
+//
+
+DELIMITER ;
