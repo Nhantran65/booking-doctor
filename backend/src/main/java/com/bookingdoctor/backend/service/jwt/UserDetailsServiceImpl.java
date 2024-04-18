@@ -3,12 +3,15 @@ package com.bookingdoctor.backend.service.jwt;
 import com.bookingdoctor.backend.entity.UserEntity;
 import com.bookingdoctor.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -16,15 +19,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    public UserDetails getCurrentUser() {
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-        //Write Logic to get the user from the DB
+        // Truy vấn cơ sở dữ liệu để lấy thông tin người dùng dựa trên email (username)
         UserEntity user = userRepository.findFirstByEmail(email);
-        if(user == null){
-            throw new UsernameNotFoundException("User not found",null);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with email: " + email);
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPasswordHash(), new ArrayList<>());
+        // Trả về một đối tượng UserDetails tùy chỉnh chứa thông tin người dùng
+        return new CustomUserDetails(user);
     }
+
+    // Class UserDetails tùy chỉnh bao gồm thông tin của UserEntity
+
 }
