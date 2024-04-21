@@ -24,25 +24,23 @@ public class WebSecurityConfiguration {
     @Autowired
     private JwtRequestFilter requestFilter;
 
+    @SuppressWarnings("deprecation")
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/authenticate", "/sign-up", "/specialization").permitAll()
-                                .requestMatchers("/**").authenticated()
-                )
+                .authorizeRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/authenticate", "/sign-up", "/specialization/all", "/doctor", "/doctor/all", "/story", "/story/all",
+                                "/clinic/all", "/clinic")
+                        .permitAll()
+                        .requestMatchers("/**").authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(sessionManagement ->
-                        sessionManagement
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                );
+                .sessionManagement(sessionManagement -> sessionManagement
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -55,4 +53,3 @@ public class WebSecurityConfiguration {
     }
 
 }
-
