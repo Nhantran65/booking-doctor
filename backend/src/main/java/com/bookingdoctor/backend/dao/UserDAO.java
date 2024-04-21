@@ -15,4 +15,6 @@ public class UserDAO {
     private String email;
 
     private Role role;
+
+    private String profilepicture;
 }

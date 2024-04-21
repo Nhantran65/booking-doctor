@@ -35,6 +35,10 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
+    public List<CommentEntity> getAllByStoryId(int storyId){
+        return commentRepository.findAllByStoryId(storyId);
+    }
+
     public List<CommentEntity> getAll(){
         return commentRepository.findAll();
     }

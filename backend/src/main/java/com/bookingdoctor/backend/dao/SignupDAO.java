@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class SignupDAO {
 
+    private String profilepicture;
+
     private String firstname;
 
     private String lastname;

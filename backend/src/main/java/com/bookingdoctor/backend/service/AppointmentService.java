@@ -85,6 +85,7 @@ public class AppointmentService {
         if(appointmentEntity.isPresent()){
             AppointmentEntity newAppointment = new AppointmentEntity();
 
+            newAppointment.setId(id);
             newAppointment.setDoctor(doctor);
             newAppointment.setPatient(patient);
             newAppointment.setClinic(clinic);

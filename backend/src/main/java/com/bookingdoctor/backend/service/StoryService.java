@@ -1,8 +1,10 @@
 package com.bookingdoctor.backend.service;
 
 import com.bookingdoctor.backend.dao.StoryDAO;
+import com.bookingdoctor.backend.entity.CommentEntity;
 import com.bookingdoctor.backend.entity.StoryEntity;
 import com.bookingdoctor.backend.entity.UserEntity;
+import com.bookingdoctor.backend.repository.CommentRepository;
 import com.bookingdoctor.backend.repository.StoryRepository;
 import com.bookingdoctor.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,13 @@ public class StoryService {
 
     private final StoryRepository storyRepository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public StoryService(StoryRepository storyRepository, UserRepository userRepository){
+    public StoryService(StoryRepository storyRepository, UserRepository userRepository, CommentRepository commentRepository){
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Optional<StoryEntity> getStory(int id){
@@ -61,6 +65,8 @@ public class StoryService {
         if (optionalStoryEntity.isPresent()){
             StoryEntity newStory = new StoryEntity();
 
+            newStory.setId(id);
+            newStory.setContent(story.getContent());
             newStory.setUser(user);
             newStory.setTitle(story.getTitle());
             newStory.setImage(story.getImage());

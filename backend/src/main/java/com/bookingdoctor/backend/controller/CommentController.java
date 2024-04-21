@@ -26,6 +26,11 @@ public class CommentController {
         return (CommentEntity) comment.orElseThrow();
     }
 
+    @GetMapping("/story")
+    public List<CommentEntity> getCommentByStoryId(@RequestParam int id){
+        return commentService.getAllByStoryId(id);
+    }
+
     @GetMapping("/all")
     public List<CommentEntity> getAll(){
         return commentService.getAll();
