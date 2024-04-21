@@ -1,4 +1,5 @@
 package com.bookingdoctor.backend.service.jwt;
+
 import com.bookingdoctor.backend.entity.UserEntity;
 import com.bookingdoctor.backend.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
@@ -78,4 +79,3 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 }
-
