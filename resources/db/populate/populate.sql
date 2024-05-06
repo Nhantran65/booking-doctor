@@ -1,4 +1,4 @@
-USE booking_doctor_db;
+USE booking_doctor_dba;
 
 -- Inserting into Users table
 INSERT INTO users (first_name, last_name, email, password_hash, role, profile_picture, bio)

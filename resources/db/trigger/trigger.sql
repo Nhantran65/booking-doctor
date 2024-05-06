@@ -1,4 +1,18 @@
-USE booking_doctor_db;
+USE booking_doctor_dba;
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_users
+BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+    IF NEW.role IS NULL THEN
+        SET NEW.role = 'patient';
+    END IF;
+END;
+//
+
+DELIMITER ;
 
 DELIMITER //
 

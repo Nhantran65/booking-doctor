@@ -1,6 +1,6 @@
 -- Create DB
 CREATE DATABASE IF NOT EXISTS booking_doctor_db;
-USE booking_doctor_db;
+USE booking_doctor_dba;
 
 -- Table User: Save User Information
 CREATE TABLE IF NOT EXISTS users (
