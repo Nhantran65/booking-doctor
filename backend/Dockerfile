@@ -1,8 +1,13 @@
 # Stage 1: Build the application
 FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
+
+# Copy the Maven project files
+COPY pom.xml .
+COPY src ./src
+
+# Build the application with Maven
+RUN mvn clean package -DskipTests || { echo "Maven build failed"; exit 1; }
 
 # Stage 2: Create the runtime environment
 FROM openjdk:17.0.1-jdk-slim
