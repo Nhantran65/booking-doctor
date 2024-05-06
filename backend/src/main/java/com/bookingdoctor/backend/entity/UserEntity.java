@@ -46,7 +46,7 @@ public class UserEntity {
     private String bio;
 
     @Enumerated(EnumType.STRING)
-    private Role role ;
+    private Role role;
 
 
 

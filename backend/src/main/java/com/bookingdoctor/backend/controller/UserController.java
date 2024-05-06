@@ -24,7 +24,8 @@ public class UserController {
     @GetMapping
     public UserEntity getCurrentUser() {
         // Get Current user from UserDetailsServiceImpl
-        UserDetails userDetails = userDetailsService.loadUserByUsername(userDetailsService.getCurrentUser().getUsername());
+        UserDetails userDetails = userDetailsService
+                .loadUserByUsername(userDetailsService.getCurrentUser().getUsername());
         String email = userDetails.getUsername();
 
         // Query to Database to get User information by email from User Details
@@ -33,7 +34,7 @@ public class UserController {
 
     @PutMapping("/update")
     public UserEntity updateUserDetails(@RequestBody UserDAO updatedUser) {
-        //  Get current user from UserDetails
+        // Get current user from UserDetails
         UserEntity currentUser = this.getCurrentUser();
 
         // Check valid User

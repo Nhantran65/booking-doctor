@@ -18,6 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails getCurrentUser() {
         return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // Truy vấn cơ sở dữ liệu để lấy thông tin người dùng dựa trên email (username)
@@ -28,5 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // Trả về một đối tượng UserDetails tùy chỉnh chứa thông tin người dùng
         return new CustomUserDetails(user);
     }
+
+    // Class UserDetails tùy chỉnh bao gồm thông tin của UserEntity
 
 }

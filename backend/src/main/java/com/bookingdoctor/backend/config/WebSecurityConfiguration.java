@@ -29,7 +29,7 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/authenticate", "/sign-up", "/specialization/all", "/doctor", "/doctor/all", "/story", "/story/all",
+                        .requestMatchers("/authenticate", "/sign-up", "/specialization/all", "/doctor", "/doctor/all", "/story", "/story/all", "/comment/story",
                                 "/clinic/all", "/clinic")
                         .permitAll()
                         .requestMatchers("/**").authenticated())

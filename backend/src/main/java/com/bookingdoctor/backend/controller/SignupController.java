@@ -2,6 +2,7 @@ package com.bookingdoctor.backend.controller;
 
 import com.bookingdoctor.backend.dao.SignupDAO;
 import com.bookingdoctor.backend.dao.UserDAO;
+import com.bookingdoctor.backend.enums.Role;
 import com.bookingdoctor.backend.service.auth.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class SignupController {
     // Define a POST mapping for the "/sign-up" endpoint
     @PostMapping("/sign-up")
     public ResponseEntity<?> signupUser(@RequestBody SignupDAO signupDAO) {
+        signupDAO.setRole(Role.patient);
         // Call the AuthService to create a new user
         UserDAO createdUser = authService.createUser(signupDAO);
         // Check if the user creation was successful
