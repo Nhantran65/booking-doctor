@@ -1,0 +1,4 @@
+export enum STORY_KEYS {
+    GET_ALL_STORY = 'GET_ALL_STORY',
+    GET_STORY_BY_ID = 'GET_STORY_BY_ID',
+}

@@ -1,0 +1,4 @@
+export enum STATUS_KEYS {
+    GET_ALL_STATUS = 'GET_ALL_STATUS',
+    GET_STATUS_BY_ID = 'GET_STATUS_BY_ID',
+}

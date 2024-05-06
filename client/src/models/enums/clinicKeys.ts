@@ -1,0 +1,4 @@
+export enum CLINIC_KEYS {
+    GET_ALL_CLINIC = 'GET_ALL_CLINIC',
+    GET_CLINIC_BY_ID = 'GET_CLINIC_BY_ID',
+}
